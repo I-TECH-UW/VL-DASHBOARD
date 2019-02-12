@@ -5,7 +5,7 @@
     </div>
 </div>
 <script type="text/javascript">
-	$(function () {
+	$().ready(function(){
                 $('#national_sample_types').highcharts({
                     chart: {
                         type: 'column'
