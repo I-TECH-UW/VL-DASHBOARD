@@ -20,6 +20,13 @@ class Regimen extends MY_Controller
 
 		$this->load->view('trends_outcomes_view', $data);
 	}
+	function regimen_outcomes_sup($year=NULL,$month=NULL,$to_year=NULL,$to_month=NULL,$partner=NULL)
+	{
+		$data['trends']= $this->regimen_model->regimens_outcomes($year,$month,$to_year,$to_month,$partner);
+		$data['div_name'] = "regimen_summary_outcomes_sup";		
+
+		$this->load->view('trends_outcomes_view', $data);
+	}
 
 	function regimen_county_outcomes($year=NULL,$month=NULL,$regimen=NULL,$to_year=NULL,$to_month=NULL,$partner=NULL)
 	{
@@ -34,7 +41,7 @@ class Regimen extends MY_Controller
 		$data['outcomes']= $this->regimen_model->regimen_vl_outcomes($year,$month,$regimen,$to_year,$to_month,$partner);
 
 		// $this->load->view('vl_outcomes_view',$data);
-		$this->load->view('vl_outcomes_view',$data);
+		$this->load->view('vl_outcomes_view_regimen',$data);
 	}
 
 	function regimen_gender($year=NULL,$month=NULL,$regimen=NULL,$to_year=NULL,$to_month=NULL,$partner=NULL)

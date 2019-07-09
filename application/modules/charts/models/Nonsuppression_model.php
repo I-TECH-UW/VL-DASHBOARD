@@ -124,7 +124,7 @@ class Nonsuppression_model extends MY_Model
 		$result = $this->db->query($sql)->result_array();
 		// echo "<pre>";print_r($result);die();
 
-
+                
 		$data['gnd_gr']['name'] = lang('label.non_suppression');
 		$data['gnd_gr']['colorByPoint'] = true;
 		$female = NULL;
@@ -132,25 +132,25 @@ class Nonsuppression_model extends MY_Model
 		$nodata = NULL;
 
 		foreach ($result as $key => $value) {
-			if ($value['name']=='F') {
-				$data['gnd_gr']['data'][$key]['name'] = lang('label.female');
-				$data['gnd_gr']['data'][$key]['y'] = (int) $value['nonsuppressed'];
+			if ($value['name']=='Feminin') {
+				$data['gnd_gr']['data'][0]['name'] = lang('label.female');
+				$data['gnd_gr']['data'][0]['y'] = (int) $value['nonsuppressed'];
 				$female = number_format((int) $value['nonsuppressed']).' ('.round((((int) $value['nonsuppressed'])/@((int) $value['nonsuppressed']+(int) $value['suppressed']))*100,1).'%)';
-			} else if ($value['name']=='M') {
-				$data['gnd_gr']['data'][$key]['name'] = lang('label.male');
-				$data['gnd_gr']['data'][$key]['y'] = (int) $value['nonsuppressed'];
+			} else if ($value['name']=='Masculin') {
+				$data['gnd_gr']['data'][1]['name'] = lang('label.male');
+				$data['gnd_gr']['data'][1]['y'] = (int) $value['nonsuppressed'];
 				$male = number_format((int) $value['nonsuppressed']).' ('.round((((int) $value['nonsuppressed'])/@((int) $value['nonsuppressed']+(int) $value['suppressed']))*100,1).'%)';
 			} else {
 				$data['gnd_gr']['data'][$key]['name'] = $value['name'];
 				$data['gnd_gr']['data'][$key]['y'] = (int) $value['nonsuppressed'];
-				$nodata = number_format((int) @$value['nonsuppressed']).' ('.round((((int) @$value['nonsuppressed'])/@((int) $value['nonsuppressed']+(int) $value['suppressed']))*100,1).'%)';
+				$nodata = number_format((int) $value['nonsuppressed']).' ('.round((((int) $value['nonsuppressed'])/@((int) $value['nonsuppressed']+(int) $value['suppressed']))*100,1).'%)';
 			}
 		}
 
 		$data['gnd_gr']['data'][0]['sliced'] = true;
 		$data['gnd_gr']['data'][0]['selected'] = true;
-		$data['gnd_gr']['data'][0]['color'] = '#F2784B';
-		$data['gnd_gr']['data'][1]['color'] = '#1BA39C';
+		$data['gnd_gr']['data'][0]['color'] = '#e81dee';
+		$data['gnd_gr']['data'][1]['color'] = '#2f80d1';
 
 		$data['ul'] = '<tr>
 		    		<td>'.lang('label.male').'</td>
@@ -228,15 +228,14 @@ class Nonsuppression_model extends MY_Model
 		$nodata = 0;
 		$nodataTotal = 0;
 
-
 		foreach ($result as $key => $value) {
-			if ($value['name']=='Less 2'||$value['name']=='2-9') {
+			if ($value['name']=='<2'||$value['name']=='2-9') {
 				$children += $value['nonsuppressed'];
 				$childrenTotal += $value['nonsuppressed']+$value['suppressed'];
 			} else if ($value['name']=='10-14'||$value['name']=='15-19') {
 				$adolescent += $value['nonsuppressed'];
 				$adolescentTotal += $value['nonsuppressed']+$value['suppressed'];
-			} else if ($value['name']=='20-24'||$value['name']=='25+') {
+			} else if ($value['name']=='20-24'||$value['name']=='>25') {
 				$adults += $value['nonsuppressed'];
 				$adultsTotal += $value['nonsuppressed']+$value['suppressed'];
 			} else {
@@ -256,8 +255,8 @@ class Nonsuppression_model extends MY_Model
 
 		$data['age_gr']['data'][0]['sliced'] = true;
 		$data['age_gr']['data'][0]['selected'] = true;
-		$data['age_gr']['data'][0]['color'] = '#F2784B';
-		$data['age_gr']['data'][1]['color'] = '#1BA39C';
+		$data['age_gr']['data'][0]['color'] = '#e8ee1d';
+		$data['age_gr']['data'][1]['color'] = '#2f80d1';
                 
                 if($childrenTotal == 0){
                      $val_chil = number_format((int) $children).' ('.round(0,1).'%)';
@@ -558,7 +557,7 @@ class Nonsuppression_model extends MY_Model
 			$data["sup_county"][0]["data"][$key]	=  (int) $value['nonsuppressed'];
 			$data["sup_county"][1]["data"][$key]	=  (int) $value['suppressed'];
 		}
-		// echo "<pre>";print_r($data);die();
+//		 echo "<pre>";print_r($data);echo '</pre>';
 		return $data;
 	}
 

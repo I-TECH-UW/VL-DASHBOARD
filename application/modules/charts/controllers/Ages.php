@@ -19,6 +19,13 @@ class Ages extends MY_Controller
 
 		$this->load->view('trends_outcomes_view', $data);
 	}
+	function age_outcomes_sup($year=NULL,$month=NULL,$to_year=NULL,$to_month=NULL,$partner=NULL)
+	{
+		$data['trends']= $this->ages_model->ages_outcomes($year,$month,$to_year,$to_month,$partner);
+		$data['div_name'] = "age_summary_outcomes_sup";		
+
+		$this->load->view('trends_outcomes_view', $data);
+	}
 
 	function age_county_outcomes($year=NULL,$month=NULL,$age=NULL,$to_year=NULL,$to_month=NULL,$partner=NULL)
 	{
@@ -38,8 +45,20 @@ class Ages extends MY_Controller
 	function age_gender($year=NULL,$month=NULL,$age=NULL,$to_year=NULL,$to_month=NULL,$partner=NULL)
 	{
 		$data['outcomes'] = $this->ages_model->ages_gender($year,$month,$age,$to_year,$to_month,$partner);
-		
-    	$this->load->view('age_regimen_gender_view',$data);
+
+                $this->load->view('age_regimen_gender_view',$data);
+	}
+	function p_age_gender2($year=NULL,$month=NULL,$age=NULL,$partner=NULL,$to_year=NULL,$to_month=NULL)
+	{
+		$data['outcomes'] = $this->ages_model->p_ages_gender2($year,$month,$age,$partner,$to_year,$to_month);
+
+                $this->load->view('p_age_regimen_gender_view',$data);
+	}
+	function p_age_gender_regimen($year=NULL,$month=NULL,$age=NULL,$partner=NULL,$regimen=NULL,$to_year=NULL,$to_month=NULL)
+	{
+		$data['outcomes'] = $this->ages_model->p_ages_gender_regimen($year,$month,$age,$partner,$regimen,$to_year,$to_month);
+
+                $this->load->view('p_age_regimen_gender_view',$data);
 	}
 
 	function age_breakdowns($year=NULL,$month=NULL,$age=NULL,$to_year=NULL,$to_month=NULL,$county=null,$partner=null,$subcounty=null,$site=null)

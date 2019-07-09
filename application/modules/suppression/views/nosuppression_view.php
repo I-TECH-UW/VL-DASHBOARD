@@ -51,7 +51,7 @@
 <div class="row">
 	<div class="col-md-6">
 		<div class="panel panel-default">
-			<div class="panel-heading">
+			<div class="panel-heading chart_title">
 			  <?=  lang('label.gender')?><div class="display_date"></div>
 			</div>
 		  	<div class="panel-body">
@@ -64,7 +64,7 @@
 	</div>
 	<div class="col-md-6">
 		<div class="panel panel-default">
-			<div class="panel-heading">
+			<div class="panel-heading chart_title">
 			  <?=  lang('label.age_category')?><div class="display_date"></div>
 			</div>
 		  	<div class="panel-body">
@@ -78,7 +78,7 @@
 <div class="row">
 	<div class="col-md-4">
 		<div class="panel panel-default">
-			<div class="panel-heading">
+			<div class="panel-heading chart_title">
 			  <?=  lang('label.justification')?> <div class="display_date"></div>
 			</div>
 		  	<div class="panel-body">
@@ -91,7 +91,7 @@
 	</div>
 	<div class="col-md-4">
 		<div class="panel panel-default">
-			<div class="panel-heading">
+			<div class="panel-heading chart_title">
 			  <?=  lang('label.gender')?> <div class="display_date"></div>
 			</div>
 		  	<div class="panel-body">
@@ -104,7 +104,7 @@
 	</div>
 	<div class="col-md-4">
 		<div class="panel panel-default">
-			<div class="panel-heading">
+			<div class="panel-heading chart_title">
 			  <?=  lang('label.age')?> <div class="display_date"></div>
 			</div>
 		  	<div class="panel-body">
@@ -122,7 +122,7 @@
 <div class="row">
 	<div class="col-md-3">
 		<div class="panel panel-default">
-			<div class="panel-heading">
+			<div class="panel-heading chart_title">
 			  <?=  lang('label.counties')?><div class="display_date"></div>
 			</div>
 		  	<div class="panel-body">
@@ -135,7 +135,7 @@
 	</div>
 	<div class="col-md-3">
 		<div class="panel panel-default">
-			<div class="panel-heading">
+			<div class="panel-heading chart_title">
 			  <?=  lang('label.sub_sp_counties')?> <div class="display_date"></div>
 			</div>
 		  	<div class="panel-body">
@@ -147,7 +147,7 @@
 	</div>
 	<div class="col-md-3">
 		<div class="panel panel-default">
-			<div class="panel-heading">
+			<div class="panel-heading chart_title">
 			  <?=  lang('label.facilities')?> <div class="display_date"></div>
 			</div>
 		  	<div class="panel-body">
@@ -159,7 +159,7 @@
 	</div>
 	<div class="col-md-3">
 		<div class="panel panel-default">
-			<div class="panel-heading">
+			<div class="panel-heading chart_title">
 			  <?=  lang('label.partners')?> <div class="display_date"></div>
 			</div>
 		  	<div class="panel-body">
@@ -174,7 +174,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="panel panel-default">
-			<div class="panel-heading">
+			<div class="panel-heading chart_title">
 			  <?=  lang('label.VL_county_suppress')?> <div class="display_date"></div>
 			</div>
 		  	<div class="panel-body">
@@ -187,115 +187,4 @@
 	</div>
 </div>
 
-
-
-
-<?php /*'<div class="row">
-	<div class="col-md-7">
-		<!-- Begining of the age gender suppresion failures -->
-		<div class="row">
-			<div class="col-md-7">
-				<!-- <div class="panel panel-default">
-					<div class="panel-heading">
-					  By Gender <div class="display_date"></div>
-					</div>
-				  	<div class="panel-body">
-				  	<div class="row" id="genderGrp">
-				  		<div><?=  lang('label.loading')?></div>
-				  	</div>
-				  </div>
-				</div> -->
-			</div>
-			<div class="col-md-5">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-					  By Age <div class="display_date"></div>
-					</div>
-				  	<div class="panel-body">
-				  	<div class="row" id="ageGrp">
-				  		<div><?=  lang('label.loading')?></div>
-				  	</div>
-				  	<!-- -->
-				  </div>
-				</div>
-			</div>
-		</div>
-		<!-- End of the age gender suppresion failures -->
-		
-		<div class="row">
-			<div class="col-md-7">
-				<!-- Begining of Justification -->
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						By Justification <div class="display_date"></div>
-					</div>
-					  <div class="panel-body">
-					  	<div class="row" id="justification">
-					  		<div><?=  lang('label.loading')?></div>
-					  		
-					  	</div>
-					 </div>
-				</div>
-				<!-- End of Justification -->
-			</div>
-			<div class="col-md-5">
-				Begining of Sample Types
-				<div class="panel panel-default">
-						<div class="panel-heading">
-							By Sample Types <div class="display_date"></div>
-						</div>
-					  <div class="panel-body">
-					  	<div class="row" id="sampleType">
-					  		<div><?=  lang('label.loading')?></div>
-					  	</div>
-					 </div>
-				</div>
-				<!-- End of Sample Types -->
-			</div>
-		</div>
-		
-		
-		
-	</div>
-	<div class="col-md-5">
-		<div class="row">
-			<div class="col-md-6">
-				<div class="panel panel-default">
-				  <div class="panel-heading">
-				  	Counties <div class="display_date"></div>
-				  </div>
-				  <div class="panel-body" id="countys">
-				    <?=  lang('label.loading')?>
-				  </div>
-				</div>
-				
-			</div>
-
-			<div class="col-md-6">
-				<div class="panel panel-default">
-				  <div class="panel-heading">
-				  	Patners <div class="display_date"></div>
-				  </div>
-				  <div class="panel-body" id="partners">
-				    <div><?=  lang('label.loading')?></div>
-				  </div>
-				</div>
-		
-			</div>
-		</div>
-		<!-- Begining of Regimen -->
-		<div class="panel panel-default">
-				<div class="panel-heading">
-					By Regimen <div class="display_date"></div>
-				</div>
-			  <div class="panel-body">
-			  	<div class="row" id="regimen">
-			  		<div><?=  lang('label.loading')?></div>
-			  	</div>
-			 </div>
-		</div>
-		<!-- End of Regimen -->
-		
-	</div>
-</div>';*/?>
 <?php $this->load->view('nosuppression_view_footer')?>

@@ -10,7 +10,7 @@ class County extends MY_Controller {
 		$this->data	=	array_merge($this->data,$this->load_libraries(array('material','highstock','highmaps','highcharts','custom', 'Kenya', 'tablecloth', 'select2')));
 		$this->session->set_userdata('partner_filter', NULL);
 		$this->load->module('charts/county');
-		$this->load->module('charts/pmtct');
+		//$this->load->module('charts/pmtct');
 	}
 
 	public function index()
@@ -30,19 +30,11 @@ class County extends MY_Controller {
 		$this->template($this->data);
 	}
 
-	public function pmtct()
-	{
-		$this->load->module('charts/summaries');
-		$this->load->module('charts/pmtct');
-		$this->clear_all_session_data();
-		$this->data['content_view'] = 'county/county_pmtct_view';
-		// echo "<pre>";print_r($this->data);die();
-		$this -> template($this->data);
-	}
 
 	function countyMap()
 	{
 		$this->data['county'] = TRUE;
+                
 		$this->data['content_view'] = 'county/county_map';
 		$this -> template($this->data);
 	}

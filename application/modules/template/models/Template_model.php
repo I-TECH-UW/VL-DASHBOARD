@@ -31,7 +31,7 @@ class Template_model extends MY_Model {
         foreach ($lang as $key => $val) {
             if ($key == $language) {
                 $dropdown .= "<option value = '" . $key . "' selected>" . $val . "</option>";
-                 $this->lang->load($language,$language); //charger la langue dans le système
+                $this->lang->load($language, $language); //charger la langue dans le système
             } else {
                 $dropdown .= "<option value = '" . $key . "'>" . $val . "</option>";
             }
@@ -41,6 +41,7 @@ class Template_model extends MY_Model {
 
     function get_counties_dropdown() {
         $dropdown = '';
+        $this->db->order_by("name", "asc");
         $county_data = $this->db->get('countys')->result_array();
 
         foreach ($county_data as $key => $value) {
@@ -102,7 +103,7 @@ class Template_model extends MY_Model {
 
     function get_site_dropdown() {
         $dropdown = '';
-        $site_data = $this->db->query('SELECT DISTINCT `view_facilitys`.`ID`, `view_facilitys`.`name` FROM `vl_site_summary` JOIN `view_facilitys` ON `vl_site_summary`.`facility` = `view_facilitys`.`ID`')->result_array();
+        $site_data = $this->db->query('SELECT DISTINCT `view_facilitys`.`ID`, `view_facilitys`.`name` FROM `vl_summary` JOIN `view_facilitys` ON `vl_summary`.`facility` = `view_facilitys`.`ID` order by `view_facilitys`.`name`')->result_array();
 
         foreach ($site_data as $key => $value) {
             $dropdown .= '<option value="' . $value['ID'] . '">' . $value['name'] . '</option>';
@@ -125,11 +126,19 @@ class Template_model extends MY_Model {
 
     function get_age_dropdown() {
         $dropdown = '';
-        $regimen_data = $this->db->query("SELECT * FROM `agecategory` WHERE `ID` > '5' ")->result_array();
+        $regimen_data1 = $this->db->query("SELECT * FROM `agecategory` WHERE `subID` ='2' ")->result_array();
+        $regimen_data2 = $this->db->query("SELECT * FROM `agecategory` WHERE `subID` ='3' ")->result_array();
 
-        foreach ($regimen_data as $key => $value) {
+        $dropdown .= '<optgroup label="'. lang("classification.first").'">';
+        foreach ($regimen_data1 as $key => $value) {
             $dropdown .= '<option value="' . $value['ID'] . '">' . $value['name'] . '</option>';
         }
+        $dropdown .= '</optgroup>';
+        $dropdown .= '<optgroup label="'. lang("classification.second").'">';
+        foreach ($regimen_data2 as $key => $value) {
+            $dropdown .= '<option value="' . $value['ID'] . '">' . $value['name'] . '</option>';
+        }
+        $dropdown .= '</optgroup>';
 
         return $dropdown;
     }

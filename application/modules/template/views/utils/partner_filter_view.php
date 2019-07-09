@@ -76,14 +76,17 @@
     </form>
   </div>
   <div class="col-md-2">
-    <div id="breadcrum" class="alert" style="background-color: #1BA39C;/*display:none;*/">
+   <!-- <div id="breadcrum" class="alert" style="background-color: #1BA39C;display:none;">
       
-    </div>
+    </div> -->
   </div>
   <div class="col-md-5" id="year-month-filter">
     <div class="filter">
       <?=lang('date_year');?>  
-      <a href="javascript:void(0)" onclick="date_filter('yearly', 2018 )" class="alert-link"> 2018 </a>
+              <a href="javascript:void(0)" onclick="date_filter('yearly', 2016 )" class="alert-link"> 2016 </a>&nbsp;|&nbsp;
+              <a href="javascript:void(0)" onclick="date_filter('yearly', 2017 )" class="alert-link"> 2017 </a>&nbsp;|&nbsp;
+              <a href="javascript:void(0)" onclick="date_filter('yearly', 2018 )" class="alert-link"> 2018 </a>&nbsp;|&nbsp;
+              <a href="javascript:void(0)" onclick="date_filter('yearly', 2019 )" class="alert-link"> 2019 </a>
     </div>
     <div class="filter">
       <?=lang('date_months');?> 
@@ -110,7 +113,7 @@
                 <input name="endDate" id="endDate" class="date-picker" placeholder="<?=lang('filter_to');?>" />
             </div>
             <div class="col-md-4">
-                <button id="filter" class="btn btn-primary date-pickerBtn" style="color: white;background-color: #1BA39C; margin-top: 0.2em; margin-bottom: 0em; margin-left: 4em;"><center><?=lang('label_filter');?></center></button>
+                <button id="filter" class="btn btn-primary date-pickerBtn" style="color: white;background-color: #2f80d1; margin-top: 0.2em; margin-bottom: 0em; margin-left: 4em;"><center><?=lang('label_filter');?></center></button>
             </div>
         </div>
             <center><div id="errorAlertDateRange"><div id="errorAlert" class="alert alert-danger" role="alert">...</div></div></center>
@@ -118,7 +121,7 @@
 </div>
 <script type="text/javascript">
   $(function() {
-    $.datepicker.setDefaults( $.datepicker.regional[ "<?= lang('lang_prefix'); ?>" ] ); 
+      $.datepicker.setDefaults( $.datepicker.regional[ "<?= lang('lang_prefix'); ?>" ] ); 
     $('.date-picker').datepicker( {
         changeMonth: true,
         changeYear: true,
@@ -150,7 +153,7 @@
     // Getting the file name i.e last segment of URL (i.e. example.html)
     var fn = url.split('/').indexOf("nosuppression");
     // console.log(fn);
-    
+    /*
     if (fn==-1) {
       $.get("<?php echo base_url();?>template/breadcrum/"+null+"/"+1, function(data){
         $("#breadcrum").html(data);
@@ -159,6 +162,6 @@
       $.get("<?php echo base_url();?>template/breadcrum/"+1+"/"+1, function(data){
         $("#breadcrum").html(data);
       });
-    }
+    }*/
   });
 </script>

@@ -1,29 +1,27 @@
 <table id="example" cellspacing="1" cellpadding="3" class="tablehead table table-striped table-bordered" style="background:#CCC;">
     <thead>
         <tr class="colhead">
-            <th rowspan="2"><?= lang('label.no'); ?></th>
-            <th rowspan="2"><?= lang('label.code.MFL'); ?></th>
-            <th rowspan="2"><?= lang('label.table_name'); ?></th>
-            <th rowspan="2"><?= lang('label.table_county'); ?></th>
-            <th rowspan="2"><?= lang('label.table_received_samp'); ?></th>
-            <th rowspan="2"><?= lang('label.table_rejected'); ?></th>
-            <th rowspan="2"><?= lang('label.table_all_test_done'); ?></th>
-            <th rowspan="2"><?= lang('label.table_redraw'); ?></th>
-            <th colspan="2"><?= lang('label.table_routine_vl_tests'); ?></th>
-            <th colspan="2"><?= lang('label.table_baseline_vl_tests'); ?></th>
-            <th colspan="2"><?= lang('label.table_confirmatory_repeat_tests'); ?></th>
-            <th colspan="2"><?= lang('label.table_total_tests_valid'); ?></th>
+            <th rowspan="2"><?= lang('label.table_no') ?></th>
+            <th rowspan="2"><?= lang('label.table_name') ?></th>
+             <?php if (!isset($sub_county2)) { ?><th rowspan="2"><?= lang('label.partner') ?></th> <?PHP } ?>
+            <th rowspan="2"><?= lang('label.sub_counties') ?>
+            <th rowspan="2"><?= lang('label.table_county') ?>
+            <th colspan="5" class="text-center"><?= lang('test_done') ?></th>
+            <th colspan="4" class="text-center"><?= lang('tested_patient') ?></th>
         </tr>
-        <tr>
-            <th><?= lang('label.tests'); ?></th>
-            <th>&gt; 1000</th>
-            <th><?= lang('label.tests'); ?></th>
-            <th>&gt; 1000</th>
-            <th><?= lang('label.tests'); ?></th>
-            <th>&gt; 1000</th>
-            <th><?= lang('label.tests'); ?></th>
-            <th>&gt; 1000</th>
+        <tr class="colhead">
+            <th><?= lang('label.total') ?></th>
+            <th><?= lang('result_invalids') ?></th>
+            <th><?= lang('result_undetectable') ?></th>
+            <th><?= lang('result_lt1000') ?></th>
+            <th><?= lang('result_gt1000') ?></th>
+            <th><?= lang('label.total') ?></th>
+            <th><?= lang('patient_undetectable') ?></th>
+            <th><?= lang('patient_lt1000') ?></th>
+            <th><?= lang('patient_nonsuppressed') ?></th>
         </tr>
+
+
     </thead>
     <tbody>
         <?php echo $outcomes; ?>
@@ -34,7 +32,7 @@
             <!-- <center><button class="btn btn-primary" style="background-color: #009688;color: white;">List of all supported sites</button></center> -->
     </div>
     <div class="col-md-6">
-        <center><a href="<?php echo $link; ?>"><button id="download_link" class="btn btn-primary" style="background-color: #009688;color: white;"><?= lang('label.export_excel') ?></button></a></center>
+        <center><a href="<?php echo $link; ?>"><button id="download_link" class="btn btn-primary" style="background-color: #2f80d1;color: white;"><?= lang('label.export_excel') ?></button></a></center>
     </div>
 </div>
 <script type="text/javascript" charset="utf-8">
@@ -42,7 +40,7 @@
 
         $('#example').DataTable({
             dom: '<"btn btn-primary"B>lTfgtip',
-            responsive: true,
+            //responsive: true,
             buttons: [
                 {
                     text: '<?= lang('label.export_csv') ?>',

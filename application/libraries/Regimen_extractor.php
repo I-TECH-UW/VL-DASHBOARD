@@ -1,12 +1,12 @@
 <?php
 
-namespace dataDispatcher;
+defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Description of RegimenExtractor
  *
  * @author IT
  */
-class RegimenExtractor {
+class Regimen_extractor {
 
     const TDF = 'TDF';
     const TC = '3TC';
@@ -82,6 +82,8 @@ class RegimenExtractor {
             case '3TC': $val = self::TC;
                 break;
             case 'EFZ':
+            case 'EF':
+            case 'EV':
             case 'EFV':
             case 'EFV600':
             case 'EFVO': $val = self::EFV;

@@ -12,11 +12,22 @@
         <?php
         ?>
         <style type="text/css">
-
+            .msg_success{
+                font-size: 17px;
+                color: #0a861c;
+                font-family: monospace;
+                font-weight: 100;
+            }
+            .msg_fail{
+                font-size: 17px;
+                color: #e34820;
+                font-family: monospace;
+                font-weight: 100;
+            }
         </style>
     </head>
     <body>
-        <div class="navbar navbar-default" style="height: 135px;">
+        <div class="navbar navbar-default" style="height: 85px;">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -24,7 +35,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="javascript:void(0)" style="padding:0px;padding-top:4px;padding-left:1px;"><img src="<?php echo base_url(); ?>assets/img/logo_moh.jpg" style="width:160px;height:130px;"/></a>
+                    <a class="navbar-brand" href="javascript:void(0)" style="padding:0px;padding-top:4px;padding-left:1px;"><img src="<?php echo base_url(); ?>assets/img/logo_moh.jpg" style="width:100px;height:80px;"/></a>
                 </div>
                 <div class="navbar-collapse collapse navbar-responsive-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -51,7 +62,7 @@
                                 <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="<?php echo base_url(); ?>county"><?= lang('menu_label.county'); ?></a></li>
-                                <li><a href="<?php echo base_url(); ?>county/pmtct"> <?= lang('menu_label.county_PMTCT'); ?></a></li>
+                                <!--<li><a href="<?php echo base_url(); ?>county/pmtct"> <?= lang('menu_label.county_PMTCT'); ?></a></li>-->
                                 <li><a href="<?php echo base_url(); ?>county/subCounty"><?= lang('menu_label.sub-county'); ?> </a></li>
                             </ul>
                         </li>
@@ -65,8 +76,6 @@
                                 <li><a href="<?php echo base_url(); ?>partner/age"><?= lang('menu_label.partner_age'); ?> </a></li>
                                 <li><a href="<?php echo base_url(); ?>partner/regimen"><?= lang('menu_label.partner_regimen'); ?> </a></li>
                                 <li><a href="<?php echo base_url(); ?>partner/counties"><?= lang('menu_label.partner_counties'); ?> </a></li>
-                                <li><a href="<?php echo base_url(); ?>partner/pmtct"><?= lang('menu_label.partner_PMTCT'); ?> </a></li>
-                                <li><a href="<?php echo base_url(); ?>partner/current"><?= lang('menu_label.partner_current_supp'); ?> </a></li>
                             </ul>
                         </li>
                         <li><a href="<?php echo base_url(); ?>labs"><?= lang('menu_label.lab_perform'); ?></a></li>
@@ -75,7 +84,6 @@
                                 <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="<?php echo base_url(); ?>sites"><?= lang('menu_label.facilities'); ?> </a></li>
-                                <li><a href="<?php echo base_url(); ?>sites/pmtct"><?= lang('menu_label.facilities_PMTCT'); ?></a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -86,86 +94,62 @@
                                 <li><a href="<?php echo base_url(); ?>regimen"><?= lang('menu_label.regimen_analysis'); ?> </a></li>
                                 <li><a href="<?php echo base_url(); ?>age"><?= lang('menu_label.age_analysis'); ?> </a></li>
                                 <li><a href="<?php echo base_url(); ?>sample"><?= lang('menu_label.sample_analysis'); ?> </a></li>
-                                <li><a href="<?php echo base_url(); ?>current"><?= lang('menu_label.current_supp'); ?> </a></li>
-                                <li><a href="<?php echo base_url(); ?>pmtct"><?= lang('menu_label.PMTCT_analysis'); ?> </a></li>
                             </ul>
                         </li>
-                        <li><a href="<?php echo base_url(); ?>live"><?= lang('menu_label.live_data'); ?> </a></li>
-                        <li><a href="<?php echo base_url(); ?>contacts"><?= lang('menu_label.contact'); ?> </a></li>
+                        <li><a href="<?php echo base_url(); ?>csv"><?= lang('menu_label.import_file'); ?> </a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="container">
-            <form></form>
-            <h3><?= lang("load.csv.file"); ?></h3>
-            <form class="form-horizontal" role="form" method="post" id="import_csv" action="" enctype="multipart/form-data">
-                <div class="form-group ">
-                  <!--  <label for="select_site" class="control-label col-sm-2"><?= lang("label.site"); ?></label>
-                    <div class="form-group col-sm-10">
-                        <select id="select_site" name="site" class="btn btn-primary js-example-basic-single" required>
-                            <option  value="" disabled="true" selected="true"><?= lang('label.site_select') ?></option>
-                            <?php echo $sites; ?>
-                        </select> 
-                    </div> -->
-                </div>
-                <div class="form-group">
-                    <label for="csv_file" class="control-label col-sm-2"><?= lang("select.csv.file"); ?></label>
-                    <div class="form-group col-sm-7">
-                        <input class="form-control" type="file" name="csv_file" id="csv_file" required accept=".csv" />
+            <div class="col-md-9">
+                <form></form>
+                <h3><?= lang("load.csv.file"); ?></h3>
+                <form class="form-horizontal" role="form" method="post" id="import_csv" action="<?php echo base_url(); ?>csv/upload" enctype="multipart/form-data">
+                    <div class="form-group ">
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-3">
-                        <button type="submit" name="import_csv_btn" class="btn btn-primary" id="import_csv_btn"><?= lang("import.csv"); ?></button>
+                    <div class="form-group">
+                        <label for="csv_file" class="control-label col-sm-2"><?= lang("select.csv.file"); ?></label>
+                        <div class="form-group col-sm-7">
+                            <input class="form-control" type="file" name="csv_file" id="csv_file" required accept=".csv"  />
+                        </div>
                     </div>
-                    <div class="col-sm-4" id="loader">
-                        
-                    </div>
-                </div>
-            </form>
-            <br/>
-            <div class=" well well-sm" id="imported_csv_data"></div>
-        </div>
-        <script>
-            $(document).ready(function () {
-                $('#imported_csv_data').addClass('hidden');
-                $('#import_csv').on('submit', function (event) {
-                    $('#loader').html('');
-                    event.preventDefault();
-                    $.ajax({
-                        url: "<?php echo base_url(); ?>Csv/upload",
-                        method: "POST",
-                        data: new FormData(this),
-                        contentType: false,
-                        cache: false,
-                        processData: false,
-                        beforeSend: function () {
-                            $('#import_csv_btn').attr('disabled', true);
-                            $('#import_csv_btn').html('<?= lang("label.importing"); ?>');
-                            $('#loader').html('<img src="<?PHP echo base_url(); ?>assets/img/loader.gif" width="70" height="70" />');
-                        },
-                        success: function (data)
-                        {
-                            $('#loader').html('');
-                            console.log(data);
-                            var d = JSON.parse(data);
-                            $('#import_csv_btn').html('<?= lang("import.csv"); ?>');
-                            //$('#select_site').reset();
-                            $('#import_csv')[0].reset();
-                            $(".js-example-basic-single").select2();
-                            $('#import_csv_btn').attr('disabled', false);
-                            $('#imported_csv_data').removeClass('hidden');
-                            if (d.success == 1) {
-                                $('#imported_csv_data').append('<p>Fichier charge avec succes</p>');
-                            }
-                            $('#imported_csv_data').append('<p>' + d.nbread + ' lignes lues</p>');
-                        }
-                    });
-                });
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-3">
+                            <button type="submit" name="import_csv_btn" class="btn btn-primary" id="import_csv_btn"><?= lang("import.csv"); ?></button>
+                        </div>
+                        <div class="col-sm-4" id="loader">
 
-                $(".js-example-basic-single").select2();
-            });
-        </script>
+                        </div>
+                    </div>
+                </form>
+                <br/>
+                <?PHP if(isset($_SESSION['uploaded']) && $_SESSION['uploaded']==TRUE) {?>
+                <div class=" well well-sm" id="imported_csv_data">
+                    <?PHP
+                    if($_SESSION['success'] == TRUE){
+                        echo '<div class="msg_success">';
+                        echo $_SESSION['message'].'<br/>';
+                        echo lang('rows.num').' '.$_SESSION['nbread'].'<br/>';
+                        echo lang('processing.time').' '.$_SESSION['time'].' s<br/>';
+                        echo lang('file.name').': '.$_SESSION['filename'].', '.lang('file.size').': '.$_SESSION['filesize'].' Ko<br/>';
+                        echo '</div>';
+                    }else{
+                        echo '<div class="msg_fail">';
+                        echo $_SESSION['message'].'<br/>';
+                        echo '</div>';
+                    }
+                    ?>
+                </div>
+                <?PHP }
+                ?>
+            </div>
+            <div class="col-md-3">
+                <ul>
+                    <li><a href="<?php echo base_url(); ?>csv/refresh"><?= lang('menu.refresh'); ?> </a></li>
+                    <li><a href="<?php echo base_url(); ?>csv/import_history"><?= lang('menu.import.history'); ?> </a></li>
+                </ul>
+            </div>
+        </div>
     </body>
 </html>
